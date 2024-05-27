@@ -32,7 +32,7 @@ public class Client {
         }
 
 
-        registerSensorAndSendMeasurements("Sensor2", -5, 5);
+//        registerSensorAndSendMeasurements("Sensor2", -5, 5);
     }
 
     private static void registerSensorAndSendMeasurements(String sensorName,

@@ -6,6 +6,7 @@ public class MeasurementDTO {
     private SensorDTO sensor;
     private Double value;
     private Boolean raining;
+    private LocalDateTime createdAt;
 
     public SensorDTO getSensor() {
         return sensor;
@@ -29,5 +30,13 @@ public class MeasurementDTO {
 
     public void setRaining(Boolean raining) {
         this.raining = raining;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

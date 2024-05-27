@@ -1,32 +1,34 @@
 package org.example.parse;
 
+import java.time.LocalDateTime;
+
 public class Measurement {
-    private String value;
-    private String raining;
-    private String createdAt;
+    private Double value;
+    private Boolean raining;
+    private LocalDateTime createdAt;
     private Sensor sensor;
 
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
-    public String getRaining() {
+    public Boolean getRaining() {
         return raining;
     }
 
-    public void setRaining(String raining) {
+    public void setRaining(Boolean raining) {
         this.raining = raining;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
