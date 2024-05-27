@@ -3,18 +3,10 @@ package org.example.dto;
 import java.time.LocalDateTime;
 
 public class MeasurementDTO {
-    private SensorDTO sensor;
     private Double value;
     private Boolean raining;
+    private SensorDTO sensorDTO;
     private LocalDateTime createdAt;
-
-    public SensorDTO getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(SensorDTO sensor) {
-        this.sensor = sensor;
-    }
 
     public Double getValue() {
         return value;
@@ -38,5 +30,13 @@ public class MeasurementDTO {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public SensorDTO getSensor() {
+        return sensorDTO;
+    }
+
+    public void setSensor(SensorDTO sensorDTO) {
+        this.sensorDTO = sensorDTO;
     }
 }

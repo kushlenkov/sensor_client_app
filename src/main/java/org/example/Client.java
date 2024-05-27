@@ -1,38 +1,31 @@
 package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dto.MeasurementDTO;
-import org.example.parse.Measurement;
-import org.example.parse.ServerResponse;
+import org.example.dto.MeasurementsResponse;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class Client {
     public static void main(String[] args) throws JsonProcessingException {
-        ServerResponse response = getMeasurements();
+//        MeasurementsResponse response = getMeasurements();
+//
+//        List<MeasurementDTO> measurementDTOS = response.getMeasurements();
+//        for (MeasurementDTO measurementDTO : measurementDTOS) {
+//            System.out.println(measurementDTO.getSensor().getName());
+//            System.out.println(measurementDTO.getValue());
+//            System.out.println(measurementDTO.getRaining());
+//            System.out.println(measurementDTO.getCreatedAt());
+//            System.out.println("---------------------------");
+//        }
 
-        List<Measurement> measurements = response.getMeasurements();
-        for (Measurement measurement : measurements) {
-            System.out.println(measurement.getSensor().getName());
-            System.out.println(measurement.getValue());
-            System.out.println(measurement.getRaining());
-            System.out.println(measurement.getCreatedAt());
-            System.out.println("---------------------------");
-        }
 
-
-//        registerSensorAndSendMeasurements("Sensor2", -5, 5);
+        registerSensorAndSendMeasurements("Sensor2", -10, 10);
     }
 
     private static void registerSensorAndSendMeasurements(String sensorName,
@@ -51,7 +44,7 @@ public class Client {
         }
     }
 
-    private static ServerResponse getMeasurements() throws JsonProcessingException {
+    private static MeasurementsResponse getMeasurements() throws JsonProcessingException {
         final String url = "http://localhost:8080/measurements";
 
         return makeGetRequest(url);
@@ -95,15 +88,13 @@ public class Client {
         }
     }
 
-    private static ServerResponse makeGetRequest(String url) {
+    private static MeasurementsResponse makeGetRequest(String url) {
         final RestTemplate restTemplate = new RestTemplate();
-        ServerResponse response = null;
+        MeasurementsResponse response = restTemplate.getForObject(url, MeasurementsResponse.class);
 
-        try {
-            response = restTemplate.getForObject(url, ServerResponse.class);
-        } catch (HttpClientErrorException e) {
+        if (response == null) {
             System.out.println("Error!");
-            System.out.println(e.getMessage());
+            System.out.println("Response is null!");
         }
 
         return response;
